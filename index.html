@@ -3,41 +3,99 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pedro Horta Soluções IA — Programas</title>
-<meta name="description" content="Programas open source de Pedro Horta Soluções IA. Download gratuito — se lhe forem úteis, considere apoiar.">
+<title>Pedro Horta — Soluções IA</title>
+<meta name="description" content="Pedro Horta Soluções IA — ferramentas de inteligência artificial e análise de informação. Programas gratuitos e open source, oferecidos à comunidade.">
 <link rel="icon" type="image/png" href="logo-grapho.png">
 <style>
   :root {
-    --fundo: #14161a; --cartao-bg: #1d2027;
-    --texto: #e8eaed; --texto-suave: #9aa0a6; --azul: #3498db; --amarelo: #f1c40f;
+    --fundo: #14161a; --fundo-2: #181b21; --cartao-bg: #1d2027; --borda: #2c313a;
+    --texto: #e8eaed; --texto-suave: #9aa0a6; --azul: #3498db; --azul-claro: #5dade2;
+    --amarelo: #f1c40f; --roxo: #9b59b6; --vermelho: #e74c3c;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     background: var(--fundo); color: var(--texto);
     font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-    line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column;
+    line-height: 1.65;
   }
-  header { text-align: center; padding: 56px 20px 32px; }
-  header img { width: 84px; height: 84px; border-radius: 20px; }
-  header h1 { font-size: 1.9rem; margin-top: 16px; }
-  header p { color: var(--texto-suave); max-width: 560px; margin: 8px auto 0; }
-  main { flex: 1; width: 100%; max-width: 1040px; margin: 0 auto; padding: 12px 20px 48px; }
-  .grelha {
-    display: grid; gap: 24px; margin-bottom: 24px;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  a { color: var(--azul-claro); }
+
+  /* ---------- Navegação ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; gap: 20px;
+    padding: 12px 24px; background: rgba(20,22,26,0.92);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--borda);
   }
+  nav .marca { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--texto); text-decoration: none; }
+  nav .marca img { width: 30px; height: 30px; border-radius: 8px; }
+  nav .ligacoes { margin-left: auto; display: flex; gap: 18px; }
+  nav .ligacoes a { color: var(--texto-suave); text-decoration: none; font-size: 0.95rem; }
+  nav .ligacoes a:hover { color: var(--texto); }
+
+  /* ---------- Herói ---------- */
+  .heroi {
+    position: relative; overflow: hidden; text-align: center;
+    padding: 88px 20px 72px;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% -10%, rgba(52,152,219,0.18), transparent),
+      var(--fundo);
+  }
+  .heroi svg.rede { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.35; pointer-events: none; }
+  .heroi > div { position: relative; }
+  .heroi img.logo { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 8px 40px rgba(52,152,219,0.35); }
+  .heroi h1 { font-size: clamp(2rem, 5vw, 3rem); margin-top: 20px; letter-spacing: -0.02em; }
+  .heroi h1 span { color: var(--azul-claro); }
+  .heroi p.lema {
+    color: var(--texto-suave); font-size: 1.15rem; max-width: 640px; margin: 14px auto 0;
+  }
+  .heroi .botoes { justify-content: center; margin-top: 30px; }
+
+  /* ---------- Secções ---------- */
+  section { max-width: 1040px; margin: 0 auto; padding: 56px 20px; }
+  section h2 { font-size: 1.7rem; margin-bottom: 6px; }
+  section p.intro { color: var(--texto-suave); max-width: 700px; margin-bottom: 28px; }
+  .faixa { background: var(--fundo-2); border-top: 1px solid var(--borda); border-bottom: 1px solid var(--borda); }
+  .faixa section { padding: 56px 20px; }
+
+  /* ---------- Quem sou ---------- */
+  .sobre { display: flex; gap: 32px; align-items: flex-start; flex-wrap: wrap; }
+  .sobre .texto { flex: 1 1 380px; }
+  .sobre .texto p { color: var(--texto-suave); margin-bottom: 14px; }
+  .sobre .texto strong { color: var(--texto); }
+
+  /* ---------- Áreas ---------- */
+  .areas { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+  .area {
+    background: var(--cartao-bg); border: 1px solid var(--borda); border-radius: 14px;
+    padding: 22px; transition: transform 0.15s, border-color 0.15s;
+  }
+  .area:hover { transform: translateY(-3px); border-color: var(--azul); }
+  .area .icone { font-size: 1.8rem; }
+  .area h3 { font-size: 1.05rem; margin: 10px 0 6px; }
+  .area p { color: var(--texto-suave); font-size: 0.92rem; }
+
+  /* ---------- Ofertas (cartões de projetos) ---------- */
+  .grelha { display: grid; gap: 24px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
   .cartao {
-    background: var(--cartao-bg); border: 1px solid #2c313a; border-radius: 16px;
-    padding: 28px; display: flex; flex-direction: column;
+    background: var(--cartao-bg); border: 1px solid var(--borda); border-radius: 16px;
+    overflow: hidden; display: flex; flex-direction: column;
+    transition: transform 0.15s, box-shadow 0.15s;
   }
-  .cartao h2 { font-size: 1.4rem; }
+  .cartao:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.4); }
+  .cartao img.captura { width: 100%; aspect-ratio: 980 / 740; object-fit: cover; border-bottom: 1px solid var(--borda); background: #1a1a1a; }
+  .cartao .conteudo { padding: 24px 26px 26px; display: flex; flex-direction: column; flex: 1; }
+  .cartao h3 { font-size: 1.35rem; }
   .etiqueta {
-    display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em;
+    display: inline-block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
     color: var(--amarelo); border: 1px solid var(--amarelo); border-radius: 999px;
     padding: 2px 10px; margin-left: 8px; vertical-align: middle; white-space: nowrap;
   }
   .cartao p { color: var(--texto-suave); margin: 10px 0 4px; }
   .cartao ul { color: var(--texto-suave); margin: 8px 0 4px 22px; }
+
+  /* ---------- Botões ---------- */
   .botoes { display: flex; flex-wrap: wrap; gap: 12px; margin-top: auto; padding-top: 20px; }
   .botao {
     display: inline-block; text-decoration: none; font-weight: 600; font-size: 0.95rem;
@@ -47,73 +105,176 @@
   .botao-principal { background: var(--azul); color: #fff; }
   .botao-secundario { background: #2c313a; color: var(--texto); }
   .botao-apoiar { background: var(--amarelo); color: #14161a; }
-  .apoio {
-    text-align: center; background: var(--cartao-bg); border: 1px solid #2c313a;
-    border-radius: 16px; padding: 28px;
+
+  /* ---------- Apoio e contacto ---------- */
+  .apoio, .contacto {
+    text-align: center; background: var(--cartao-bg); border: 1px solid var(--borda);
+    border-radius: 16px; padding: 32px 28px;
   }
-  .apoio p { color: var(--texto-suave); max-width: 520px; margin: 0 auto 16px; }
+  .apoio p, .contacto p { color: var(--texto-suave); max-width: 540px; margin: 8px auto 18px; }
+  .contacto .botoes { justify-content: center; margin-top: 0; padding-top: 8px; }
+
   footer {
     text-align: center; color: var(--texto-suave); font-size: 0.85rem;
-    padding: 24px 20px; border-top: 1px solid #2c313a;
+    padding: 26px 20px; border-top: 1px solid var(--borda);
   }
   footer a { color: var(--texto-suave); }
 </style>
 </head>
 <body>
 
-<header>
-  <img src="logo-grapho.png" alt="Logótipo">
-  <h1>Pedro Horta Soluções IA</h1>
-  <p>Programas simples e úteis, em código aberto. O download é gratuito —
-     se algum lhe for útil, pode apoiar o desenvolvimento com o valor que entender.</p>
-</header>
+<nav>
+  <a class="marca" href="#"><img src="logo-grapho.png" alt=""> Pedro Horta · Soluções IA</a>
+  <div class="ligacoes">
+    <a href="#quem-sou">Quem sou</a>
+    <a href="#areas">O que faço</a>
+    <a href="#ofertas">🎁 Ofertas</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</nav>
 
-<main>
+<div class="heroi">
+  <svg class="rede" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g stroke="#3498db" stroke-opacity="0.25" fill="none">
+      <line x1="120" y1="90" x2="330" y2="200"/><line x1="330" y1="200" x2="210" y2="380"/>
+      <line x1="330" y1="200" x2="560" y2="120"/><line x1="560" y1="120" x2="820" y2="210"/>
+      <line x1="820" y1="210" x2="1050" y2="110"/><line x1="820" y1="210" x2="950" y2="390"/>
+      <line x1="560" y1="120" x2="640" y2="330"/><line x1="640" y1="330" x2="950" y2="390"/>
+      <line x1="210" y1="380" x2="640" y2="330"/><line x1="1050" y1="110" x2="950" y2="390"/>
+    </g>
+    <g fill="#3498db" fill-opacity="0.5">
+      <circle cx="120" cy="90" r="5"/><circle cx="330" cy="200" r="7"/><circle cx="210" cy="380" r="5"/>
+      <circle cx="560" cy="120" r="6"/><circle cx="640" cy="330" r="7"/><circle cx="1050" cy="110" r="5"/>
+    </g>
+    <g fill="#f1c40f" fill-opacity="0.5"><circle cx="820" cy="210" r="7"/></g>
+    <g fill="#9b59b6" fill-opacity="0.5"><circle cx="950" cy="390" r="6"/></g>
+  </svg>
+  <div>
+    <img class="logo" src="logo-grapho.png" alt="Logótipo Pedro Horta Soluções IA">
+    <h1>Pedro Horta <span>· Soluções IA</span></h1>
+    <p class="lema">Inteligência artificial e análise de informação ao serviço das pessoas —
+       ferramentas simples que resolvem problemas reais, oferecidas em código aberto.</p>
+    <div class="botoes">
+      <a class="botao botao-principal" href="#ofertas">🎁 Ver as ofertas</a>
+      <a class="botao botao-secundario" href="#contacto">Falar comigo</a>
+    </div>
+  </div>
+</div>
+
+<section id="quem-sou">
+  <h2>Quem sou</h2>
+  <div class="sobre">
+    <div class="texto">
+      <p>Chamo-me <strong>Pedro Horta</strong>. Crio soluções de inteligência artificial e de
+         análise de informação — do conceito à ferramenta pronta a usar.</p>
+      <p>Acredito que a tecnologia deve ser <strong>simples, útil e acessível</strong>: os programas
+         que desenvolvo nascem de necessidades reais, correm no seu computador sem depender de
+         serviços externos, e os seus dados ficam sempre consigo.</p>
+      <p>Tudo o que publico aqui é <strong>gratuito e open source</strong> — uma oferta à comunidade.
+         Se alguma ferramenta lhe for útil, pode retribuir com um pequeno apoio ou simplesmente
+         partilhá-la com quem dela precise.</p>
+    </div>
+  </div>
+</section>
+
+<div class="faixa">
+<section id="areas">
+  <h2>O que faço</h2>
+  <p class="intro">Áreas em que trabalho e das quais irão nascendo as próximas ofertas.</p>
+  <div class="areas">
+    <div class="area">
+      <div class="icone">🕸️</div>
+      <h3>Grafos de conhecimento</h3>
+      <p>Redes de contactos, análise de relações e visualização interativa de informação ligada.</p>
+    </div>
+    <div class="area">
+      <div class="icone">🤖</div>
+      <h3>Assistentes de IA</h3>
+      <p>Agentes e assistentes inteligentes que analisam, resumem e respondem sobre os seus dados.</p>
+    </div>
+    <div class="area">
+      <div class="icone">🔎</div>
+      <h3>Recolha e análise de informação</h3>
+      <p>Monitorização de fontes abertas (OSINT), vigilância de temas e relatórios automáticos.</p>
+    </div>
+    <div class="area">
+      <div class="icone">🧰</div>
+      <h3>Aplicações à medida</h3>
+      <p>Programas de secretária e aplicações web práticos, leves e sem complicações.</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<section id="ofertas">
+  <h2>🎁 Ofertas</h2>
+  <p class="intro">Programas completos, gratuitos e de código aberto. Descarregue, use e partilhe —
+     e se lhe pouparem tempo, considere <a href="#apoiar">apoiar o projeto</a>.</p>
   <div class="grelha">
 
     <!-- ============================================================
          MODELO DE CARTÃO — copiar, colar dentro da .grelha e editar:
 
     <div class="cartao">
-      <h2>Nome do Projeto <span class="etiqueta">GRÁTIS · Windows</span></h2>
-      <p>Descrição curta do que o programa faz.</p>
-      <ul>
-        <li><strong>Funcionalidade 1</strong> — explicação.</li>
-        <li><strong>Funcionalidade 2</strong> — explicação.</li>
-      </ul>
-      <div class="botoes">
-        <a class="botao botao-principal" href="LINK-DOWNLOAD">⬇ Download</a>
-        <a class="botao botao-secundario" href="LINK-REPO">Código-fonte</a>
+      <img class="captura" src="IMAGEM.png" alt="Captura de ecrã do programa">
+      <div class="conteudo">
+        <h3>Nome do Projeto <span class="etiqueta">GRÁTIS · Windows</span></h3>
+        <p>Descrição curta do que o programa faz.</p>
+        <ul>
+          <li><strong>Funcionalidade 1</strong> — explicação.</li>
+          <li><strong>Funcionalidade 2</strong> — explicação.</li>
+        </ul>
+        <div class="botoes">
+          <a class="botao botao-principal" href="LINK-DOWNLOAD">⬇ Download</a>
+          <a class="botao botao-secundario" href="LINK-REPO">Código-fonte</a>
+        </div>
       </div>
     </div>
          ============================================================ -->
 
     <div class="cartao">
-      <h2>Grapho Manual <span class="etiqueta">GRÁTIS · Windows</span></h2>
-      <p>Gestor visual da sua rede de contactos profissionais. Mapeie pessoas, empresas e
-         ferramentas num grafo interativo e faça perguntas à rede:</p>
-      <ul>
-        <li><strong>"Como chego à Universidade X?"</strong> — mostra a cadeia de contactos mais curta.</li>
-        <li><strong>"Quem sabe de redes?"</strong> — pesquisa por nome, especialidade ou relação.</li>
-        <li><strong>Relatórios</strong> — hubs, conectores e contactos isolados da sua rede.</li>
-      </ul>
-      <p>Os seus dados ficam apenas no seu computador, num ficheiro local.</p>
-      <div class="botoes">
-        <a class="botao botao-principal" href="https://github.com/Hoedro/Grapho-Manual/releases/latest">⬇ Download (.exe)</a>
-        <a class="botao botao-secundario" href="https://hoedro.github.io/Grapho-Manual/">Página</a>
-        <a class="botao botao-secundario" href="https://github.com/Hoedro/Grapho-Manual">Código-fonte</a>
+      <img class="captura" src="grapho-demo.png" alt="Grafo interativo do Grapho Manual com pessoas, empresas e aplicações ligadas por relações">
+      <div class="conteudo">
+        <h3>Grapho Manual <span class="etiqueta">GRÁTIS · Windows</span></h3>
+        <p>Gestor visual da sua rede de contactos profissionais. Mapeie pessoas, empresas e
+           ferramentas num grafo interativo e faça perguntas à rede:</p>
+        <ul>
+          <li><strong>"Como chego à Universidade X?"</strong> — mostra a cadeia de contactos mais curta.</li>
+          <li><strong>"Quem sabe de redes?"</strong> — pesquisa por nome, especialidade ou relação.</li>
+          <li><strong>Relatórios</strong> — hubs, conectores e contactos isolados da sua rede.</li>
+        </ul>
+        <p>Os seus dados ficam apenas no seu computador, num ficheiro local.</p>
+        <div class="botoes">
+          <a class="botao botao-principal" href="https://github.com/Hoedro/Grapho-Manual/releases/latest">⬇ Download (.exe)</a>
+          <a class="botao botao-secundario" href="https://hoedro.github.io/Grapho-Manual/">Página</a>
+          <a class="botao botao-secundario" href="https://github.com/Hoedro/Grapho-Manual">Código-fonte</a>
+        </div>
       </div>
     </div>
 
   </div>
+</section>
 
+<section id="apoiar" style="padding-top: 0;">
   <div class="apoio">
     <h2>☕ Gostou? Apoie o projeto</h2>
-    <p>Todos os programas são gratuitos e open source. Se algum lhe poupou tempo
+    <p>Todas as ofertas são gratuitas e open source. Se alguma lhe poupou tempo
        ou lhe foi útil, um pequeno contributo ajuda a manter e criar mais ferramentas.</p>
     <a class="botao botao-apoiar" href="https://www.paypal.me/PedroHorta">💛 Apoiar via PayPal (@PedroHorta)</a>
   </div>
-</main>
+</section>
+
+<section id="contacto" style="padding-top: 0;">
+  <div class="contacto">
+    <h2>📬 Contacto</h2>
+    <p>Tem uma ideia, uma dúvida sobre um programa, ou um problema que a IA possa resolver?
+       Fale comigo.</p>
+    <div class="botoes">
+      <a class="botao botao-principal" href="mailto:pedrosilvahorta@gmail.com">✉ Enviar e-mail</a>
+      <a class="botao botao-secundario" href="https://github.com/Hoedro">GitHub</a>
+    </div>
+  </div>
+</section>
 
 <footer>
   © 2026 Pedro Horta Soluções IA · Software open source sob a licença
