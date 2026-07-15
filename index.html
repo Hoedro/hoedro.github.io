@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pedro Horta — Soluções IA</title>
-<meta name="description" content="Pedro Horta Soluções IA — ferramentas de inteligência artificial e análise de informação. Programas gratuitos e open source, oferecidos à comunidade.">
+<meta name="description" content="Pedro Horta Soluções IA — GraphRAG e modelos de conhecimento, investigação forense e análise de fraude em ambiente isolado, IA para arquivos, museus e bibliotecas. Soberania dos dados e confidencialidade garantida. Programas gratuitos e open source.">
 <link rel="icon" type="image/png" href="logo-grapho.png">
 <style>
   :root {
@@ -20,44 +20,65 @@
     line-height: 1.65;
   }
   a { color: var(--azul-claro); }
+  ::selection { background: rgba(52,152,219,0.35); }
 
   /* ---------- Navegação ---------- */
   nav {
     position: sticky; top: 0; z-index: 50;
     display: flex; align-items: center; gap: 20px;
-    padding: 12px 24px; background: rgba(20,22,26,0.92);
-    backdrop-filter: blur(8px); border-bottom: 1px solid var(--borda);
+    padding: 12px 24px; background: rgba(20,22,26,0.85);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--borda);
   }
   nav .marca { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--texto); text-decoration: none; }
   nav .marca img { width: 30px; height: 30px; border-radius: 8px; }
-  nav .ligacoes { margin-left: auto; display: flex; gap: 18px; }
-  nav .ligacoes a { color: var(--texto-suave); text-decoration: none; font-size: 0.95rem; }
+  nav .ligacoes { margin-left: auto; display: flex; gap: 18px; flex-wrap: wrap; }
+  nav .ligacoes a { color: var(--texto-suave); text-decoration: none; font-size: 0.95rem; transition: color 0.15s; }
   nav .ligacoes a:hover { color: var(--texto); }
 
   /* ---------- Herói ---------- */
   .heroi {
     position: relative; overflow: hidden; text-align: center;
-    padding: 88px 20px 72px;
+    padding: 96px 20px 80px;
     background:
-      radial-gradient(ellipse 60% 50% at 50% -10%, rgba(52,152,219,0.18), transparent),
+      radial-gradient(ellipse 60% 50% at 50% -10%, rgba(52,152,219,0.20), transparent),
+      radial-gradient(ellipse 40% 35% at 85% 15%, rgba(155,89,182,0.08), transparent),
       var(--fundo);
   }
   .heroi svg.rede { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.35; pointer-events: none; }
+  @keyframes pulsar { 0%,100% { fill-opacity: 0.35; } 50% { fill-opacity: 0.75; } }
+  .heroi svg.rede circle { animation: pulsar 4s ease-in-out infinite; }
+  .heroi svg.rede circle:nth-of-type(2n) { animation-delay: 1.3s; }
+  .heroi svg.rede circle:nth-of-type(3n) { animation-delay: 2.6s; }
+  @media (prefers-reduced-motion: reduce) { .heroi svg.rede circle { animation: none; } }
   .heroi > div { position: relative; }
   .heroi img.logo { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 8px 40px rgba(52,152,219,0.35); }
-  .heroi h1 { font-size: clamp(2rem, 5vw, 3rem); margin-top: 20px; letter-spacing: -0.02em; }
-  .heroi h1 span { color: var(--azul-claro); }
-  .heroi p.lema {
-    color: var(--texto-suave); font-size: 1.15rem; max-width: 640px; margin: 14px auto 0;
+  .heroi h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin-top: 20px; letter-spacing: -0.02em; }
+  .heroi h1 span {
+    background: linear-gradient(100deg, var(--azul-claro), #8ec9ef);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
   }
+  .heroi p.lema {
+    color: var(--texto-suave); font-size: 1.15rem; max-width: 680px; margin: 14px auto 0;
+  }
+  .selos { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 22px; }
+  .selo {
+    font-size: 0.82rem; font-weight: 600; color: var(--texto-suave);
+    border: 1px solid var(--borda); border-radius: 999px; padding: 5px 14px;
+    background: rgba(29,32,39,0.7);
+  }
+  .selo b { color: var(--azul-claro); font-weight: 600; }
   .heroi .botoes { justify-content: center; margin-top: 30px; }
 
   /* ---------- Secções ---------- */
-  section { max-width: 1040px; margin: 0 auto; padding: 56px 20px; }
-  section h2 { font-size: 1.7rem; margin-bottom: 6px; }
-  section p.intro { color: var(--texto-suave); max-width: 700px; margin-bottom: 28px; }
+  section { max-width: 1040px; margin: 0 auto; padding: 60px 20px; }
+  .rotulo {
+    display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--azul-claro); margin-bottom: 8px;
+  }
+  section h2 { font-size: 1.8rem; margin-bottom: 6px; letter-spacing: -0.01em; }
+  section p.intro { color: var(--texto-suave); max-width: 720px; margin-bottom: 30px; }
   .faixa { background: var(--fundo-2); border-top: 1px solid var(--borda); border-bottom: 1px solid var(--borda); }
-  .faixa section { padding: 56px 20px; }
+  .faixa section { padding: 60px 20px; }
 
   /* ---------- Quem sou ---------- */
   .sobre { display: flex; gap: 32px; align-items: flex-start; flex-wrap: wrap; }
@@ -65,16 +86,41 @@
   .sobre .texto p { color: var(--texto-suave); margin-bottom: 14px; }
   .sobre .texto strong { color: var(--texto); }
 
-  /* ---------- Áreas ---------- */
-  .areas { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
-  .area {
+  /* ---------- Pilares ---------- */
+  .pilares { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); margin-top: 26px; }
+  .pilar {
     background: var(--cartao-bg); border: 1px solid var(--borda); border-radius: 14px;
-    padding: 22px; transition: transform 0.15s, border-color 0.15s;
+    padding: 20px; border-top: 3px solid var(--azul);
   }
-  .area:hover { transform: translateY(-3px); border-color: var(--azul); }
-  .area .icone { font-size: 1.8rem; }
-  .area h3 { font-size: 1.05rem; margin: 10px 0 6px; }
-  .area p { color: var(--texto-suave); font-size: 0.92rem; }
+  .pilar:nth-child(2) { border-top-color: var(--amarelo); }
+  .pilar:nth-child(3) { border-top-color: var(--roxo); }
+  .pilar:nth-child(4) { border-top-color: var(--vermelho); }
+  .pilar h3 { font-size: 1rem; margin-bottom: 4px; }
+  .pilar p { color: var(--texto-suave); font-size: 0.9rem; }
+
+  /* ---------- Serviços ---------- */
+  .areas { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+  .area {
+    background: var(--cartao-bg); border: 1px solid var(--borda); border-radius: 16px;
+    padding: 26px; transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+    position: relative; overflow: hidden;
+  }
+  .area::before {
+    content: ""; position: absolute; inset: 0 0 auto 0; height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(52,152,219,0.6), transparent);
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .area:hover { transform: translateY(-3px); border-color: var(--azul); box-shadow: 0 12px 32px rgba(0,0,0,0.35); }
+  .area:hover::before { opacity: 1; }
+  .area.destaque { grid-column: span 2; }
+  @media (max-width: 720px) { .area.destaque { grid-column: span 1; } }
+  .area .icone { font-size: 1.9rem; }
+  .area h3 { font-size: 1.15rem; margin: 10px 0 8px; }
+  .area p { color: var(--texto-suave); font-size: 0.94rem; margin-bottom: 8px; }
+  .area p:last-child { margin-bottom: 0; }
+  .area strong { color: var(--texto); font-weight: 600; }
+  .area ul { color: var(--texto-suave); font-size: 0.94rem; margin: 8px 0 8px 20px; }
+  .area ul li { margin-bottom: 5px; }
 
   /* ---------- Ofertas (cartões de projetos) ---------- */
   .grelha { display: grid; gap: 24px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
@@ -99,9 +145,9 @@
   .botoes { display: flex; flex-wrap: wrap; gap: 12px; margin-top: auto; padding-top: 20px; }
   .botao {
     display: inline-block; text-decoration: none; font-weight: 600; font-size: 0.95rem;
-    padding: 10px 20px; border-radius: 10px; transition: filter 0.15s;
+    padding: 10px 20px; border-radius: 10px; transition: filter 0.15s, transform 0.1s;
   }
-  .botao:hover { filter: brightness(1.15); }
+  .botao:hover { filter: brightness(1.15); transform: translateY(-1px); }
   .botao-principal { background: var(--azul); color: #fff; }
   .botao-secundario { background: #2c313a; color: var(--texto); }
   .botao-apoiar { background: var(--amarelo); color: #14161a; }
@@ -109,10 +155,11 @@
   /* ---------- Apoio e contacto ---------- */
   .apoio, .contacto {
     text-align: center; background: var(--cartao-bg); border: 1px solid var(--borda);
-    border-radius: 16px; padding: 32px 28px;
+    border-radius: 16px; padding: 34px 28px;
   }
-  .apoio p, .contacto p { color: var(--texto-suave); max-width: 540px; margin: 8px auto 18px; }
+  .apoio p, .contacto p { color: var(--texto-suave); max-width: 560px; margin: 8px auto 18px; }
   .contacto .botoes { justify-content: center; margin-top: 0; padding-top: 8px; }
+  .contacto .nota { font-size: 0.85rem; margin-top: 16px; margin-bottom: 0; }
 
   footer {
     text-align: center; color: var(--texto-suave); font-size: 0.85rem;
@@ -127,7 +174,7 @@
   <a class="marca" href="#"><img src="logo-grapho.png" alt=""> Pedro Horta · Soluções IA</a>
   <div class="ligacoes">
     <a href="#quem-sou">Quem sou</a>
-    <a href="#areas">O que faço</a>
+    <a href="#servicos">O que faço</a>
     <a href="#ofertas">🎁 Ofertas</a>
     <a href="#contacto">Contacto</a>
   </div>
@@ -152,16 +199,25 @@
   <div>
     <img class="logo" src="logo-grapho.png" alt="Logótipo Pedro Horta Soluções IA">
     <h1>Pedro Horta <span>· Soluções IA</span></h1>
-    <p class="lema">Inteligência artificial e análise de informação ao serviço das pessoas —
-       ferramentas simples que resolvem problemas reais, oferecidas em código aberto.</p>
+    <p class="lema">Inteligência artificial e análise de informação ao serviço das pessoas e das
+       instituições — soluções à medida que correm nos seus computadores, com os seus dados
+       sempre sob o seu controlo.</p>
+    <div class="selos">
+      <span class="selo"><b>🛡️</b> Soberania dos dados</span>
+      <span class="selo"><b>🤐</b> Confidencialidade garantida</span>
+      <span class="selo"><b>🎯</b> Soluções à sua medida</span>
+      <span class="selo"><b>🔌</b> Funciona sem internet</span>
+    </div>
     <div class="botoes">
-      <a class="botao botao-principal" href="#ofertas">🎁 Ver as ofertas</a>
+      <a class="botao botao-principal" href="#servicos">Conhecer os serviços</a>
+      <a class="botao botao-secundario" href="#ofertas">🎁 Ver as ofertas</a>
       <a class="botao botao-secundario" href="#contacto">Falar comigo</a>
     </div>
   </div>
 </div>
 
 <section id="quem-sou">
+  <span class="rotulo">Apresentação</span>
   <h2>Quem sou</h2>
   <div class="sobre">
     <div class="texto">
@@ -170,43 +226,117 @@
       <p>Acredito que a tecnologia deve ser <strong>simples, útil e acessível</strong>: os programas
          que desenvolvo nascem de necessidades reais, correm no seu computador sem depender de
          serviços externos, e os seus dados ficam sempre consigo.</p>
+      <p>Trabalho segundo um princípio de <strong>soberania dos dados</strong>: as soluções que
+         construo são instaladas nos computadores ou servidores do cliente e funcionam sem
+         enviar um único byte para a internet. Nos trabalhos que o exigem — investigação
+         forense, análise de documentos sensíveis — opero em <strong>ambiente completamente
+         isolado (air-gapped)</strong>, com garantia de confidencialidade do início ao fim.</p>
+      <p>Cada projeto é <strong>desenhado à medida</strong> do problema: não vendo plataformas
+         nem subscrições, construo a ferramenta certa para a sua empresa, escritório ou
+         instituição — e entrego-a a funcionar, com formação e acompanhamento.</p>
       <p>Tudo o que publico aqui é <strong>gratuito e open source</strong> — uma oferta à comunidade.
          Se alguma ferramenta lhe for útil, pode retribuir com um pequeno apoio ou simplesmente
          partilhá-la com quem dela precise.</p>
     </div>
   </div>
+  <div class="pilares">
+    <div class="pilar">
+      <h3>🎯 À sua medida</h3>
+      <p>Cada solução é desenhada para o seu problema concreto — sem plataformas genéricas nem funcionalidades a mais.</p>
+    </div>
+    <div class="pilar">
+      <h3>🛡️ Soberania</h3>
+      <p>Tudo corre nos seus computadores. Os seus dados nunca saem para a internet nem para serviços de terceiros.</p>
+    </div>
+    <div class="pilar">
+      <h3>🤐 Confidencialidade</h3>
+      <p>Trabalho em ambiente isolado (air-gapped) quando o caso o exige, com sigilo garantido em todas as fases.</p>
+    </div>
+    <div class="pilar">
+      <h3>🔓 Sem dependências</h3>
+      <p>Soluções baseadas em código aberto: sem licenças perpétuas, sem subscrições, sem ficar refém de fornecedores.</p>
+    </div>
+  </div>
 </section>
 
 <div class="faixa">
-<section id="areas">
+<section id="servicos">
+  <span class="rotulo">Serviços</span>
   <h2>O que faço</h2>
-  <p class="intro">Áreas em que trabalho e das quais irão nascendo as próximas ofertas.</p>
+  <p class="intro">Áreas em que trabalho — para empresas, escritórios, instituições culturais e
+     organismos públicos — e das quais irão nascendo também as próximas ofertas gratuitas.</p>
   <div class="areas">
-    <div class="area">
-      <div class="icone">🕸️</div>
-      <h3>Grafos de conhecimento</h3>
-      <p>Redes de contactos, análise de relações e visualização interativa de informação ligada.</p>
+
+    <div class="area destaque">
+      <div class="icone">🧠</div>
+      <h3>GraphRAG — o conhecimento da sua organização, vivo e consultável</h3>
+      <p>Imagine todos os documentos da sua empresa ou instituição — relatórios, contratos,
+         atas, correspondência, arquivos históricos — transformados num <strong>modelo de
+         conhecimento</strong>: um grafo que liga pessoas, entidades, datas, decisões e factos,
+         sobre o qual uma inteligência artificial responde a perguntas em linguagem natural,
+         <strong>citando sempre as fontes</strong>.</p>
+      <p>É isto o <strong>GraphRAG</strong> (<em>Graph Retrieval-Augmented Generation</em>): em vez
+         de a IA "adivinhar", consulta primeiro o mapa do conhecimento da sua organização e
+         responde apenas com base nele. O resultado é uma memória institucional que não se
+         perde quando as pessoas saem — e que qualquer colaborador pode interrogar.</p>
+      <p>Instalado nos seus servidores, com modelos locais: <strong>os seus documentos nunca
+         saem de casa</strong>.</p>
     </div>
+
+    <div class="area destaque">
+      <div class="icone">🔍</div>
+      <h3>Investigação forense · análise de fraude e de incongruências</h3>
+      <p>Análise de documentação, contabilidade e <strong>peças processuais</strong> em ambiente
+         <strong>completamente isolado (air-gapped)</strong> — os dados nunca tocam a internet,
+         do primeiro ficheiro ao relatório final. Combino várias famílias de métodos:</p>
+      <ul>
+        <li><strong>Estatística forense clássica</strong> — como a lei de Benford, para despistar contabilidade e séries numéricas manipuladas;</li>
+        <li><strong>Modelos supervisionados</strong> de última geração, treinados para reconhecer padrões conhecidos de fraude;</li>
+        <li><strong>Modelos não supervisionados</strong>, que revelam anomalias, duplicações e incongruências que ninguém sabia procurar;</li>
+        <li><strong>Grafos de descoberta de ligações</strong>, que expõem relações ocultas entre pessoas, empresas, contas e movimentos;</li>
+        <li><strong>Análise documental cruzada</strong> — deteção de contradições e incoerências entre documentos e peças de um processo.</li>
+      </ul>
+      <p>Com <strong>garantia de confidencialidade</strong> e soberania total: nenhum dado sai
+         das máquinas onde o trabalho decorre.</p>
+    </div>
+
+    <div class="area">
+      <div class="icone">🏛️</div>
+      <h3>Arquivos, museus e bibliotecas</h3>
+      <p>Modernização e acessibilidade de acervos: catalogação assistida por IA, pesquisa em
+         linguagem natural sobre coleções e fundos documentais, gestão de acessos e
+         disponibilização ao público — com tecnologia local e duradoura, que não prende o
+         acervo a plataformas externas.</p>
+    </div>
+
     <div class="area">
       <div class="icone">🤖</div>
       <h3>Assistentes de IA</h3>
-      <p>Agentes e assistentes inteligentes que analisam, resumem e respondem sobre os seus dados.</p>
+      <p>Agentes e assistentes inteligentes que analisam, resumem e respondem sobre os seus
+         dados — atendimento interno, apoio à decisão, triagem de documentos — a funcionar
+         localmente, sem expor informação a serviços externos.</p>
     </div>
+
     <div class="area">
       <div class="icone">🔎</div>
-      <h3>Recolha e análise de informação</h3>
-      <p>Monitorização de fontes abertas (OSINT), vigilância de temas e relatórios automáticos.</p>
+      <h3>Recolha e análise de informação (OSINT)</h3>
+      <p>Monitorização de fontes abertas, vigilância de temas e de menções, deteção de sinais
+         e relatórios automáticos — para due diligence, reputação e apoio à investigação.</p>
     </div>
+
     <div class="area">
       <div class="icone">🧰</div>
       <h3>Aplicações à medida</h3>
-      <p>Programas de secretária e aplicações web práticos, leves e sem complicações.</p>
+      <p>Programas de secretária e aplicações web práticos, leves e sem complicações — a
+         ferramenta exata para o seu fluxo de trabalho, entregue a funcionar.</p>
     </div>
+
   </div>
 </section>
 </div>
 
 <section id="ofertas">
+  <span class="rotulo">Comunidade</span>
   <h2>🎁 Ofertas</h2>
   <p class="intro">Programas completos, gratuitos e de código aberto. Descarregue, use e partilhe —
      e se lhe pouparem tempo, considere <a href="#apoiar">apoiar o projeto</a>.</p>
@@ -267,17 +397,21 @@
 <section id="contacto" style="padding-top: 0;">
   <div class="contacto">
     <h2>📬 Contacto</h2>
-    <p>Tem uma ideia, uma dúvida sobre um programa, ou um problema que a IA possa resolver?
-       Fale comigo.</p>
+    <p>Tem um problema que a IA possa resolver, um caso que exija análise confidencial,
+       ou uma dúvida sobre um dos programas? Fale comigo.</p>
     <div class="botoes">
-      <a class="botao botao-principal" href="mailto:pedrosilvahorta@gmail.com">✉ Enviar e-mail</a>
+      <a class="botao botao-principal" href="mailto:admin@pedrohorta.pt">✉ admin@pedrohorta.pt</a>
+      <!-- TELEGRAM: descomentar e substituir USERNAME quando o Pedro criar o nome de utilizador
+      <a class="botao botao-secundario" href="https://t.me/USERNAME">💬 Telegram</a>
+      -->
       <a class="botao botao-secundario" href="https://github.com/Hoedro">GitHub</a>
     </div>
+    <p class="nota">Trabalhos sensíveis são tratados com total confidencialidade desde o primeiro contacto.</p>
   </div>
 </section>
 
 <footer>
-  © 2026 Pedro Horta Soluções IA · Software open source sob a licença
+  © 2026 Pedro Horta Soluções IA · pedrohorta.pt · Software open source sob a licença
   <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> —
   fornecido "tal como está", sem garantias nem responsabilidade do autor.
 </footer>
