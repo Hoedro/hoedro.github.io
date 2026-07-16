@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pedro Horta — Forensic &amp; AI Solutions</title>
+<meta name="description" content="Pedro Horta Unipessoal, Forensic & AI Solutions. Artificial intelligence, information analysis and forensic consulting running locally, on the client's own infrastructure — no dependence on external services, full data sovereignty.">
+<link rel="icon" type="image/png" href="/logo-grapho.png">
+<link rel="alternate" hreflang="pt" href="https://pedrohorta.pt/">
+<link rel="alternate" hreflang="en" href="https://pedrohorta.pt/en/">
+<style>
+  :root {
+    --papel: #fbfaf7;
+    --papel-2: #f4f2ec;
+    --branco: #ffffff;
+    --tinta: #17222d;
+    --tinta-suave: #55606c;
+    --marinho: #0d3550;
+    --marinho-claro: #14496d;
+    --linha: #e2ded4;
+    --dourado: #a4813c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--papel); color: var(--tinta);
+    font-family: system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.7; font-size: 16.5px;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; font-weight: 600; letter-spacing: -0.015em; }
+  a { color: var(--marinho-claro); }
+  ::selection { background: rgba(13,53,80,0.15); }
+
+  /* ---------- Navigation ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; gap: 24px;
+    padding: 16px 32px;
+    background: rgba(251,250,247,0.92); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--linha);
+  }
+  nav .marca { text-decoration: none; color: var(--tinta); line-height: 1.25; }
+  nav .marca .nome { font-family: Georgia, serif; font-size: 1.05rem; font-weight: 700; letter-spacing: 0.02em; }
+  nav .marca .sub { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--tinta-suave); }
+  nav .ligacoes { margin-left: auto; display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+  nav .ligacoes a { color: var(--tinta-suave); text-decoration: none; font-size: 0.92rem; transition: color 0.15s; }
+  nav .ligacoes a:hover { color: var(--tinta); }
+  nav .ligacoes a.cta {
+    color: #fff; background: var(--marinho); padding: 9px 18px; border-radius: 4px;
+    font-weight: 600; transition: background 0.15s;
+  }
+  nav .ligacoes a.cta:hover { background: var(--marinho-claro); }
+  @media (max-width: 720px) { nav .ligacoes a:not(.cta) { display: none; } }
+
+  /* ---------- Hero ---------- */
+  .heroi {
+    max-width: 1080px; margin: 0 auto;
+    padding: 108px 32px 84px;
+  }
+  .heroi .kicker {
+    display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--dourado); margin-bottom: 22px;
+  }
+  .heroi h1 {
+    font-size: clamp(2.1rem, 4.6vw, 3.4rem); line-height: 1.15;
+    max-width: 820px;
+  }
+  .heroi p.lema {
+    color: var(--tinta-suave); font-size: 1.18rem; max-width: 700px; margin-top: 26px;
+  }
+  .heroi p.lema strong { color: var(--tinta); font-weight: 600; }
+  .heroi .botoes { margin-top: 40px; padding-top: 0; }
+
+  /* ---------- Proof bar ---------- */
+  .prova {
+    border-top: 1px solid var(--linha); border-bottom: 1px solid var(--linha);
+    background: var(--branco);
+  }
+  .prova .interior {
+    max-width: 1080px; margin: 0 auto; padding: 34px 32px;
+    display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+  .prova .item .valor { font-family: Georgia, serif; font-size: 2rem; color: var(--marinho); line-height: 1.1; }
+  .prova .item .legenda { font-size: 0.9rem; color: var(--tinta-suave); margin-top: 4px; }
+
+  /* ---------- Sections ---------- */
+  section { max-width: 1080px; margin: 0 auto; padding: 88px 32px; }
+  .rotulo {
+    display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--dourado); margin-bottom: 12px;
+  }
+  section h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); margin-bottom: 14px; }
+  section p.intro { color: var(--tinta-suave); max-width: 740px; margin-bottom: 44px; font-size: 1.05rem; }
+  .faixa { background: var(--papel-2); border-top: 1px solid var(--linha); border-bottom: 1px solid var(--linha); }
+
+  /* ---------- About ---------- */
+  .sobre { max-width: 780px; }
+  .sobre p { color: var(--tinta-suave); margin-bottom: 18px; font-size: 1.05rem; }
+  .sobre p strong { color: var(--tinta); font-weight: 600; }
+  .pilares { display: grid; gap: 1px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); margin-top: 52px; background: var(--linha); border: 1px solid var(--linha); }
+  .pilar { background: var(--branco); padding: 28px 26px; }
+  .pilar h3 { font-size: 1.02rem; margin-bottom: 8px; color: var(--marinho); }
+  .pilar p { color: var(--tinta-suave); font-size: 0.92rem; }
+
+  /* ---------- Services ---------- */
+  .areas { display: grid; gap: 22px; grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 820px) { .areas { grid-template-columns: 1fr; } }
+  .area {
+    background: var(--branco); border: 1px solid var(--linha); border-radius: 6px;
+    padding: 34px 34px 30px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .area:hover { border-color: var(--marinho); box-shadow: 0 10px 30px rgba(13,53,80,0.07); }
+  .area.destaque { grid-column: span 2; }
+  @media (max-width: 820px) { .area.destaque { grid-column: span 1; } }
+  .area .icone { width: 26px; height: 26px; stroke: var(--marinho); fill: none; stroke-width: 1.5; margin-bottom: 16px; }
+  .area h3 { font-size: 1.28rem; margin-bottom: 12px; }
+  .area p { color: var(--tinta-suave); font-size: 0.97rem; margin-bottom: 12px; }
+  .area p:last-child { margin-bottom: 0; }
+  .area strong { color: var(--tinta); font-weight: 600; }
+  .area ul { color: var(--tinta-suave); font-size: 0.97rem; margin: 4px 0 12px 20px; }
+  .area ul li { margin-bottom: 6px; }
+
+  /* ---------- Philanthropy ---------- */
+  .compromisso {
+    background: var(--branco); border: 1px solid var(--linha); border-left: 3px solid var(--dourado);
+    border-radius: 0 6px 6px 0; padding: 26px 30px; max-width: 780px; margin-bottom: 44px;
+  }
+  .compromisso p { color: var(--tinta-suave); font-size: 0.98rem; }
+  .compromisso p strong { color: var(--tinta); }
+  .grelha { display: grid; gap: 24px; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
+  .cartao {
+    background: var(--branco); border: 1px solid var(--linha); border-radius: 6px;
+    overflow: hidden; display: flex; flex-direction: column;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .cartao:hover { border-color: var(--marinho); box-shadow: 0 10px 30px rgba(13,53,80,0.07); }
+  .cartao img.captura { width: 100%; aspect-ratio: 980 / 740; object-fit: cover; border-bottom: 1px solid var(--linha); }
+  .cartao .conteudo { padding: 26px 28px 28px; display: flex; flex-direction: column; flex: 1; }
+  .cartao h3 { font-size: 1.25rem; }
+  .etiqueta {
+    display: inline-block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--dourado); border: 1px solid var(--dourado);
+    border-radius: 3px; padding: 2px 9px; margin: 10px 0 0; width: fit-content;
+  }
+  .cartao p { color: var(--tinta-suave); font-size: 0.95rem; margin: 12px 0 4px; }
+  .cartao ul { color: var(--tinta-suave); font-size: 0.95rem; margin: 8px 0 4px 20px; }
+  .cartao ul li { margin-bottom: 5px; }
+
+  /* ---------- Buttons ---------- */
+  .botoes { display: flex; flex-wrap: wrap; gap: 12px; margin-top: auto; padding-top: 22px; }
+  .botao {
+    display: inline-block; text-decoration: none; font-weight: 600; font-size: 0.95rem;
+    padding: 12px 24px; border-radius: 4px; transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .botao-principal { background: var(--marinho); color: #fff; }
+  .botao-principal:hover { background: var(--marinho-claro); }
+  .botao-secundario { background: transparent; color: var(--marinho); border: 1px solid var(--marinho); }
+  .botao-secundario:hover { background: rgba(13,53,80,0.06); }
+
+  /* ---------- Contact ---------- */
+  .contacto-caixa {
+    background: var(--marinho); color: #eef2f5; border-radius: 8px;
+    padding: 56px 40px; text-align: center;
+  }
+  .contacto-caixa h2 { color: #fff; }
+  .contacto-caixa p { color: #c4d2dc; max-width: 620px; margin: 12px auto 0; }
+  .contacto-caixa .botoes { justify-content: center; padding-top: 30px; }
+  .contacto-caixa .botao-principal { background: #fff; color: var(--marinho); }
+  .contacto-caixa .botao-principal:hover { background: #e8edf1; }
+  .contacto-caixa .botao-secundario { color: #dfe8ee; border-color: rgba(255,255,255,0.45); }
+  .contacto-caixa .botao-secundario:hover { background: rgba(255,255,255,0.08); }
+  .contacto-caixa .nota { font-size: 0.85rem; color: #9fb3c1; margin-top: 26px; }
+
+  footer {
+    text-align: center; color: var(--tinta-suave); font-size: 0.85rem;
+    padding: 30px 20px; border-top: 1px solid var(--linha);
+  }
+  footer a { color: var(--tinta-suave); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="marca" href="#">
+    <span class="nome">Pedro Horta</span>
+    <span class="sub">Forensic &amp; AI Solutions</span>
+  </a>
+  <div class="ligacoes">
+    <a href="#about">About us</a>
+    <a href="#services">Services</a>
+    <a href="#philanthropy">Philanthropy</a>
+    <a href="/" lang="pt" title="Versão portuguesa">PT</a>
+    <a class="cta" href="#contact">Book a confidential meeting</a>
+  </div>
+</nav>
+
+<header class="heroi">
+  <span class="kicker">Data sovereignty · Technological autonomy</span>
+  <h1>Artificial intelligence and forensic consulting under your absolute control.</h1>
+  <p class="lema">We install advanced analytical capability — artificial intelligence, information
+     processing and forensic investigation — directly on the client's own infrastructure.
+     <strong>No dependence on external services, no risk of disruption, and not a single
+     document ever leaves your domain.</strong> The systems keep working even if the outside
+     connection fails: the capability we install is yours, and remains yours.</p>
+  <div class="botoes">
+    <a class="botao botao-principal" href="#contact">Book a confidential meeting</a>
+    <a class="botao botao-secundario" href="#services">Explore our services</a>
+  </div>
+</header>
+
+<div class="prova">
+  <div class="interior">
+    <div class="item">
+      <div class="valor">20+ years</div>
+      <div class="legenda">of forensic and case-analysis experience within the team</div>
+    </div>
+    <div class="item">
+      <div class="valor">100% local</div>
+      <div class="legenda">systems run on the client's infrastructure, even without internet</div>
+    </div>
+    <div class="item">
+      <div class="valor">Zero</div>
+      <div class="legenda">documents exposed to external providers or third-party services</div>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <span class="rotulo">The team</span>
+  <h2>Who we are</h2>
+  <div class="sobre">
+    <p><strong>Pedro Horta Unipessoal, Forensic &amp; AI Solutions</strong> brings together a team
+       of highly qualified specialists in <strong>artificial intelligence</strong>,
+       <strong>cybersecurity</strong>, <strong>business forecasting</strong> and
+       <strong>business intelligence</strong> — complemented by an established network of
+       business facilitators that opens doors where technology alone cannot.</p>
+    <p>We work for law firms, companies with demanding internal-control requirements and
+       cultural institutions, under one non-negotiable principle: <strong>the client's data
+       remains, at every stage of the work, under the client's strict control.</strong></p>
+    <p>Every project is conducted with the rigour of those who know they are handling sensitive
+       matters: documented methodology, contractual confidentiality and delivery verified in
+       working order — including team training and close follow-up after handover.</p>
+  </div>
+  <div class="pilares">
+    <div class="pilar">
+      <h3>Sovereignty</h3>
+      <p>Everything runs on the client's own computers and servers. No data is ever sent to the internet or to third-party services.</p>
+    </div>
+    <div class="pilar">
+      <h3>Confidentiality</h3>
+      <p>Where the work demands it, we operate in a fully isolated environment, with secrecy guaranteed from first contact to final report.</p>
+    </div>
+    <div class="pilar">
+      <h3>Autonomy</h3>
+      <p>No mandatory subscriptions, no dependence on external APIs, no risk of a distant provider interrupting your operation.</p>
+    </div>
+    <div class="pilar">
+      <h3>Experience</h3>
+      <p>More than two decades of forensic practice and case analysis, combined with mastery of the latest AI techniques.</p>
+    </div>
+  </div>
+</section>
+
+<div class="faixa">
+<section id="services">
+  <span class="rotulo">Services</span>
+  <h2>How we can help you</h2>
+  <p class="intro">Six areas of practice, one common denominator: capability installed at the
+     client's premises, measurable results and information that never leaves your control.</p>
+  <div class="areas">
+
+    <div class="area destaque">
+      <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="5" r="2.4"/><circle cx="12" cy="18" r="2.4"/><path d="M8 7.2 10.8 16M16 6.8 13.2 16M8.4 6l7.2-.8"/></svg>
+      <h3>Artificial Intelligence and Data Processing</h3>
+      <p>Your organisation's information is worth little while it sits scattered across folders,
+         mailboxes and archives. Through <strong>intelligent vectorisation of information</strong>
+         and the <strong>extraction and combination of data</strong> from thousands of documents —
+         reports, contracts, correspondence, databases — we build
+         <strong>high-level decision-support systems</strong>: complex questions answered in
+         seconds, always with the sources identified.</p>
+      <p>The systems we install work autonomously: they analyse, cross-reference information,
+         flag what needs attention and prepare decision-ready summaries — tasks that today
+         consume days of qualified work.</p>
+      <p><strong>Complete independence from third-party chat services:</strong> everything runs
+         on your servers, stays operational if the outside connection fails and never exposes a
+         single document to external providers.</p>
+    </div>
+
+    <div class="area destaque">
+      <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M8 20h8M12 4 5 6.5M12 4l7 2.5M5 6.5 2.5 12h5L5 6.5zM2.5 12a2.5 2.5 0 0 0 5 0M19 6.5 16.5 12h5L19 6.5zM16.5 12a2.5 2.5 0 0 0 5 0"/></svg>
+      <h3>Forensic Investigation and Consulting</h3>
+      <p>Our team includes specialists with <strong>more than 20 years of experience in forensic
+         investigation and case analysis</strong>. We combine traditional investigative methods
+         with artificial-intelligence solutions that multiply analytical capacity: detection of
+         inconsistencies between documents, systematic cross-referencing of documentation and
+         reconstruction of chains of fact.</p>
+      <p>What sets us apart is <strong>absolute confidentiality</strong>: the models are
+         installed and run in the office where the case is handled, entirely offline.
+         <strong>No data leaves the premises</strong> — not to the internet, not even to us.</p>
+      <p>We also develop bespoke solutions on request, such as conversational assistants built
+         for the <strong>analysis of case files and legal documents</strong>, at the service of
+         the lawyer or the internal-control officer.</p>
+    </div>
+
+    <div class="area destaque">
+      <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10h16M5 10v8M9.7 10v8M14.3 10v8M19 10v8M3 21h18M12 3 4 8h16z"/></svg>
+      <h3>Modernising Culture — Museums and Archives</h3>
+      <p>A digital-transformation service for cultural institutions: creation of
+         <strong>intelligent kiosks</strong> and <strong>natural-language search engines</strong>
+         built on the institution's own digitised documentary and photographic collections. A
+         quantum leap in how culture is accessed: <strong>researchers</strong> interrogate
+         decades of documentation in minutes, <strong>curators and staff</strong> gain a
+         decision-support tool over their own collections and <strong>visitors</strong> explore
+         the collection through conversation.</p>
+      <p>We draw on a <strong>broad network of specialists</strong> and build every project from
+         the ground up, adapted to the concrete reality of each archive — collection size, state
+         of digitisation, available team.</p>
+      <p>And because funding is decisive, <strong>we support the institution in preparing
+         applications for EU and community funding</strong> to make the project viable.</p>
+    </div>
+
+    <div class="area">
+      <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V9M10 20V4M16 20v-8M22 20H2"/></svg>
+      <h3>Business Intelligence and Forecasting</h3>
+      <p>Indicator dashboards, market analysis and forecasting models that turn company data
+         into well-founded decisions: where to invest, what to correct, when to move. Clear
+         reports, written for the board — not for technicians.</p>
+    </div>
+
+    <div class="area">
+      <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
+      <h3>Due Diligence and Open-Source Intelligence</h3>
+      <p>Systematic collection and analysis of public information on partners, suppliers and
+         counterparties: background verification, detection of risk signals and reports that
+         support contracting and negotiation — with method, discretion and documented sources.</p>
+    </div>
+
+    <div class="area">
+      <svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6.5 18 3l3 3-3.5 3.5M11 10 3 18l3 3 8-8M11 10l2-2M14 13l7-7"/></svg>
+      <h3>Dedicated Systems and Team Enablement</h3>
+      <p>Development of dedicated applications — light, secure and designed around each client's
+         real workflow — accompanied by training for the teams who will use them. We deliver in
+         working order, with documentation, and stay closely involved after handover.</p>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<section id="philanthropy">
+  <span class="rotulo">Philanthropy</span>
+  <h2>Technology that gives back</h2>
+  <p class="intro">We make small software utilities freely available, open source under the
+     Apache 2.0 licence — complete tools, with no limited versions and no hidden costs.</p>
+  <div class="compromisso">
+    <p><strong>Our commitment:</strong> these utilities are, and will always be, free of charge.
+       Anyone who wishes to contribute voluntarily should know that <strong>100% of the amounts
+       received are handed over to social-solidarity institutions supporting children in the
+       Azores</strong>. With full transparency: every donor can find out, at any time, exactly
+       which institution their contribution went to — just write to
+       <a href="mailto:admin@pedrohorta.pt">admin@pedrohorta.pt</a>.</p>
+  </div>
+  <div class="grelha">
+
+    <div class="cartao">
+      <img class="captura" src="/grapho-demo.png" alt="Interactive Grapho Manual graph with people, companies and applications linked by relationships">
+      <div class="conteudo">
+        <h3>Grapho Manual</h3>
+        <span class="etiqueta">Open source · Apache 2.0 · Windows</span>
+        <p>A visual manager for your professional network. Map people, companies and tools in an
+           interactive graph and ask questions of your network:</p>
+        <ul>
+          <li><strong>"How do I reach University X?"</strong> — shows the shortest chain of contacts.</li>
+          <li><strong>"Who knows about networking?"</strong> — search by name, expertise or relationship.</li>
+          <li><strong>Reports</strong> — hubs, connectors and isolated contacts in your network.</li>
+        </ul>
+        <p>Your data stays on your computer only, in a local file.</p>
+        <div class="botoes">
+          <a class="botao botao-principal" href="https://github.com/Hoedro/Grapho-Manual/releases/latest">Download (.exe)</a>
+          <a class="botao botao-secundario" href="https://hoedro.github.io/Grapho-Manual/">Website</a>
+          <a class="botao botao-secundario" href="https://github.com/Hoedro/Grapho-Manual">Source code</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="botoes" style="padding-top: 36px;">
+    <a class="botao botao-secundario" href="https://www.paypal.me/PedroHorta">Contribute — 100% goes to children in the Azores</a>
+  </div>
+</section>
+
+<section id="contact" style="padding-top: 0;">
+  <div class="contacto-caixa">
+    <h2>Talk to us</h2>
+    <p>A first meeting, in person or remote, with no obligation — to understand your problem
+       and tell you, frankly, whether and how we can solve it.</p>
+    <div class="botoes">
+      <a class="botao botao-principal" href="mailto:admin@pedrohorta.pt">admin@pedrohorta.pt</a>
+      <a class="botao botao-secundario" href="https://signal.me/#eu/m0U7ZmWY97Mh7JQ6n94GlvQ1XEy27j1Idm8xAsQ7471xVcCnkjZGE5aAQSk_Pa-h">Signal</a>
+      <a class="botao botao-secundario" href="https://t.me/pedrohorta_solucoes_ia">Telegram</a>
+      <a class="botao botao-secundario" href="https://github.com/Hoedro">GitHub</a>
+    </div>
+    <p class="nota">Sensitive matters are handled with complete confidentiality from the very
+       first contact. For maximum discretion, prefer <strong>Signal</strong>: end-to-end
+       encrypted communication, with no need to reveal your phone number.</p>
+  </div>
+</section>
+
+<footer>
+  © 2026 Pedro Horta Unipessoal, Forensic &amp; AI Solutions · pedrohorta.pt ·
+  <a href="mailto:admin@pedrohorta.pt">admin@pedrohorta.pt</a>
+</footer>
+
+</body>
+</html>
